@@ -1,8 +1,14 @@
 #!/usr/bin/node
-if (process.argv.length <= 3) {
-  console.log('0');
+
+const args = process.argv.slice(2);
+const numbers = args.map(Number);
+const validNumbers = numbers.filter(num => !isNaN(num));
+const numValidArgs = validNumbers.length;
+
+if (numValidArgs <= 1) {
+  console.log(0);
 } else {
-  const arr = process.argv.slice(2).map(Number);
-  const second = arr.sort(function (a, b) { return b - a; })[1];
-  console.log(second);
+  const sortedNumbers = validNumbers.sort((a, b) => b - a);
+  const secondLargest = sortedNumbers[1];
+  console.log(secondLargest);
 }
